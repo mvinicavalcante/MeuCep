@@ -1,14 +1,26 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Button, Linking } from "react-native";
 
 const CepDetailsScreen = ({ route }) => {
   const cepData = route.params?.cepData || null;
 
+  function goToMaps() {
+    if (cepData) {
+      let url;
+      if (cepData.logradouro && cepData.bairro) {
+        url = `https://www.google.com/maps/search/?api=1&query=${cepData.logradouro},${cepData.bairro}`;
+      } else {
+        url = `https://www.google.com/maps/search/?api=1&query=${cepData.localidade}, ${cepData.uf}`;
+      }
+      Linking.openURL(url).catch((error) =>
+        console.error("Error opening maps:", error)
+      );
+    }
+  }
+
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 20, marginBottom: 20, textAlign: "center" }}>
-        CEP Details Screen
-      </Text>
+      <Text style={styles.title}>{cepData.localidade}</Text>
       {cepData && (
         <View>
           <Text style={styles.info}>
@@ -19,13 +31,13 @@ const CepDetailsScreen = ({ route }) => {
             Bairro: {cepData.bairro ? cepData.bairro : "Não informado"}
           </Text>
           <Text style={styles.info}>
-            Cidade: {cepData.localidade ? cepData.localidade : "Não informado"}
-          </Text>
-          <Text style={styles.info}>
             Estado: {cepData.uf ? cepData.uf : "Não informado"}
           </Text>
         </View>
       )}
+      <View>
+        <Button title="Ver no Maps" onPress={goToMaps} />
+      </View>
     </View>
   );
 };
@@ -46,6 +58,13 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     backgroundColor: "#fff",
+  },
+  title: {
+    fontSize: 25,
+    color: "green",
+    textAlign: "center",
+    padding: 20,
+    marginBottom: 10,
   },
 });
 

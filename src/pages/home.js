@@ -6,7 +6,9 @@ import {
   Text,
   Alert,
   TextInput,
+  Image,
 } from "react-native";
+
 import { useNavigation } from "@react-navigation/native";
 
 import { StatusBar } from "expo-status-bar";
@@ -23,7 +25,6 @@ const Home = () => {
     }
     try {
       const response = await Api.get(`${cep}/json/`);
-      console.log(response.data);
       navigation.navigate("CepDetailsScreen", { cepData: response.data }); // Corrigir o nome da tela aqui
     } catch (error) {
       console.error(error);
@@ -32,6 +33,9 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
+      <View>
+        <Text style={styles.title}>Digite seu CEP</Text>
+      </View>
       <TextInput
         style={styles.input}
         placeholder={"Digite seu CEP"}
@@ -40,7 +44,7 @@ const Home = () => {
       />
       <TouchableOpacity style={styles.buttonBuscar} onPress={buscarCep}>
         <View>
-          <Text>Buscar</Text>
+          <Text style={{ color: "#fff" }}>BUSCAR</Text>
         </View>
       </TouchableOpacity>
       <StatusBar style="auto" />
@@ -52,32 +56,42 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 15,
+    height: "100%",
     alignItems: "center",
-    marginTop: 10,
+    justifyContent: "center",
+    backgroundColor: "#fff",
+  },
+  title: {
+    fontSize: 30,
+    color: "green",
   },
   buttonBuscar: {
-    width: "20%",
+    width: "80%",
     height: 40,
-    margin: 12,
     borderWidth: 1,
     padding: 10,
     borderRadius: 10,
-    backgroundColor: "#fff",
     borderColor: "green",
-    color: "green",
+    backgroundColor: "green",
     textAlign: "center",
     alignItems: "center",
     justifyContent: "center",
+    shadowOpacity: 0.2,
   },
   input: {
     width: "80%",
-    height: 40,
+    height: 70,
     margin: 12,
+    fontSize: 20,
+    marginTop: -50,
+    fontStyle: "italic",
+    shadowOpacity: 0.2,
     borderWidth: 1,
     borderColor: "green",
     padding: 10,
     borderRadius: 10,
     backgroundColor: "#fff",
+    color: "green",
   },
 });
 

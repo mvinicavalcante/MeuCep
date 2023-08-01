@@ -9,11 +9,12 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer style={style.container}>
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
             backgroundColor: "green",
+            height: 120,
           },
           headerTintColor: "#fff",
         }}
@@ -24,3 +25,9 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+const style = StyleSheet.create({
+  container: {
+    backgroundColor: "#fff",
+  },
+});
