@@ -14,6 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 
 import Api from "../services/api";
+import Input from "../components/input";
 
 const Home = () => {
   const navigation = useNavigation();
@@ -33,19 +34,14 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
-      <View>
-        <Text style={styles.title}>Digite seu CEP</Text>
-      </View>
-      <TextInput
-        style={styles.input}
+      <Text style={styles.title}>Digite seu CEP</Text>
+      <Input
         placeholder={"Digite seu CEP"}
-        onChangeText={(cep) => setCep(cep)} // Utilize a prop onChangeText para atualizar o valor do input
-        value={cep} // Utilize a prop value para definir o valor do input
+        onChangeText={(cep) => setCep(cep)}
+        value={cep}
       />
       <TouchableOpacity style={styles.buttonBuscar} onPress={buscarCep}>
-        <View>
-          <Text style={{ color: "#fff" }}>BUSCAR</Text>
-        </View>
+        <Text style={{ color: "#1C1C1C" }}>BUSCAR</Text>
       </TouchableOpacity>
       <StatusBar style="auto" />
     </View>
@@ -54,16 +50,17 @@ const Home = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 15,
     height: "100%",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "#1C1C1C",
   },
   title: {
+    flex: 0.25,
     fontSize: 30,
-    color: "green",
+    color: "purple",
+    fontWeight: "bold",
   },
   buttonBuscar: {
     width: "80%",
@@ -71,27 +68,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     borderRadius: 10,
-    borderColor: "green",
-    backgroundColor: "green",
+    borderColor: "purple",
+    backgroundColor: "purple",
     textAlign: "center",
     alignItems: "center",
     justifyContent: "center",
     shadowOpacity: 0.2,
-  },
-  input: {
-    width: "80%",
-    height: 70,
-    margin: 12,
-    fontSize: 20,
-    marginTop: -50,
-    fontStyle: "italic",
-    shadowOpacity: 0.2,
-    borderWidth: 1,
-    borderColor: "green",
-    padding: 10,
-    borderRadius: 10,
-    backgroundColor: "#fff",
-    color: "green",
   },
 });
 

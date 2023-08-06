@@ -13,10 +13,9 @@ export default function App() {
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
-            backgroundColor: "green",
-            height: 120,
+            backgroundColor: "purple",
           },
-          headerTintColor: "#fff",
+          headerTintColor: "white",
         }}
       >
         <Stack.Screen name="MeuCep" component={Home} />
@@ -28,6 +27,6 @@ export default function App() {
 
 const style = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
+    backgroundColor: "#1C1C1C",
   },
 });

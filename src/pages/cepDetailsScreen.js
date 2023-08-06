@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, Button, Linking } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const CepDetailsScreen = ({ route }) => {
   const cepData = route.params?.cepData || null;
@@ -35,8 +36,10 @@ const CepDetailsScreen = ({ route }) => {
           </Text>
         </View>
       )}
-      <View>
-        <Button title="Ver no Maps" onPress={goToMaps} />
+      <View style={{ marginTop: 30 }}>
+        <Button title="Ver no Maps" onPress={goToMaps}>
+          <Icon name="map-marker" size={20} color="green" />
+        </Button>
       </View>
     </View>
   );
@@ -46,22 +49,27 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 15,
-    marginTop: 10,
+    height: "100%",
+    backgroundColor: "#1C1C1C",
   },
   info: {
     width: "80%",
-    height: 40,
-    marginBottom: 15,
-    fontSize: 15,
+    height: "auto",
+    margin: 12,
+    fontSize: 20,
+    fontStyle: "italic",
+    shadowOpacity: 0.2,
     borderWidth: 1,
-    borderColor: "green",
-    padding: 10,
+    borderColor: "purple",
+    padding: 15,
     borderRadius: 10,
-    backgroundColor: "#fff",
+    backgroundColor: "transparent",
+    color: "purple",
   },
   title: {
     fontSize: 25,
-    color: "green",
+    color: "purple",
+    fontWeight: "bold",
     textAlign: "center",
     padding: 20,
     marginBottom: 10,
